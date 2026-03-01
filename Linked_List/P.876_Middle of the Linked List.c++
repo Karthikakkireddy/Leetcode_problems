@@ -2,7 +2,6 @@
 // TC - O(n)
 // SC - O(1)
 // Problem link - https://leetcode.com/problems/middle-of-the-linked-list/
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
