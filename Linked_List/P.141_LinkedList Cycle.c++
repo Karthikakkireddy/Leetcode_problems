@@ -53,6 +53,24 @@ public:
 //   and they will meet inside the cycle.
 // - If there is no cycle, fast will reach NULL.
 
+    // WHY THIS WORKS:
+
+    // Think of runners on a circular track.
+
+    // Once both pointers enter the cycle:
+    // - slow moves 1 step per iteration
+    // - fast moves 2 steps per iteration
+    // → fast gains 1 step on slow every iteration
+
+    // This reduces the gap between them.
+
+    // Since the loop has finite length,
+    // the gap must eventually become zero,
+    // so they meet.
+
+    // If there is NO cycle:
+    // fast keeps moving forward and reaches NULL,
+    // proving no loop exists.
 
 // Time Complexity: O(N)
 // - Each pointer traverses the list at most once.
