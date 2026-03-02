@@ -16,6 +16,6 @@ Each solution includes:
 
 ## Progress
 Total Solved: 3
-Easy: 3
-Medium: 0
-Hard: 0
+- Easy: 3
+- Medium: 0
+- Hard: 0
