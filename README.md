@@ -17,5 +17,5 @@ Each solution includes:
 ## Progress
 Total Solved: 8
 - Easy: 4
-- Medium: 4
+- Medium: 5
 - Hard: 0
