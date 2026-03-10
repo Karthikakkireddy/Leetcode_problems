@@ -82,7 +82,7 @@ public:
         middle → all 1s
         right → all 2s
     - Each swap pushes elements into their correct region,
-      so the unknown part keeps shrinking.
+      so the unknown part keeps shrinking. 
 
     TC: O(N)
     SC: O(1)
