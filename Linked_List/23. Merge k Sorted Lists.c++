@@ -106,3 +106,96 @@ public:
         return newHead;
     }
 };
+
+
+/*
+    Approach: Min Heap (Priority Queue)
+
+    Idea:
+    - At any moment, we want the smallest node among all lists.
+    - So we push the first node of every list into a min heap.
+    - Repeatedly:
+        → take the smallest node
+        → attach it to result
+        → push its next node into the heap
+
+    Example:
+        lists = [1→4→5, 1→3→4, 2→6]
+
+        Heap initially: [1,1,2]
+
+        Step:
+            pick 1 → push its next (4)
+            pick 1 → push its next (3)
+            pick 2 → push its next (6)
+            ...
+
+------------------------------------------------------
+
+    Why This Works
+
+    - Heap always gives the smallest available node.
+    - We only keep at most K nodes in heap (one from each list).
+    - So we efficiently merge all lists in sorted order.
+
+------------------------------------------------------
+
+    Time Complexity: O(N log K)
+
+    - N = total number of nodes
+    - K = number of lists
+    - Each node is pushed and popped once → log K cost
+
+------------------------------------------------------
+
+    Space Complexity: O(K)
+
+    - Heap stores at most one node from each list
+*/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if(lists.size() == 0 )
+            return NULL;
+
+       priority_queue<
+                        pair<int, ListNode*>,
+                        vector<pair<int, ListNode*>>,
+                        greater<pair<int, ListNode*>>
+                    > q;
+       
+        
+        for(auto x : lists)
+        {
+            if(x!= NULL)
+                q.push({x-> val , x});
+        }
+        ListNode* dummy = new ListNode(-1);
+        ListNode* curr = dummy;
+        if(!q.empty())
+             cout << q.top().first << "\n";
+        while(!q.empty())
+        {
+            pair<int, ListNode* > pq = q.top();
+            curr -> next = pq.second;
+            q.pop();
+            if(pq.second -> next != NULL)
+            {
+                q.push({pq.second -> next -> val , pq.second -> next});
+            }
+            curr = pq.second;
+        }
+        return dummy -> next ; 
+    }
+};
