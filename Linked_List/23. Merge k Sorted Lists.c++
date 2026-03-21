@@ -141,7 +141,7 @@ public:
 ------------------------------------------------------
 
     Time Complexity: O(N log K)
-
+ 
     - N = total number of nodes
     - K = number of lists
     - Each node is pushed and popped once → log K cost
