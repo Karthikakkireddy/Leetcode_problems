@@ -18,4 +18,4 @@ Each solution includes:
 Total Solved: 27
 - Easy: 8
 - Medium: 17
-- Hard: 2
+- Hard: 2 
