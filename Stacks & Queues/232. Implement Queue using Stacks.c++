@@ -137,3 +137,123 @@ public:
     }
 };
 
+/*
+🔴 Queue using 2 Stacks (Push-Costly Version)
+
+🧠 Idea:
+- Maintain st1 such that:
+      top of st1 = front of queue
+
+👉 So pop/peek become O(1)
+
+--------------------------------------------
+
+push(x):
+
+1. Move all elements from st1 → st2
+   (reverse order)
+
+2. Push new element into st1
+
+3. Move everything back from st2 → st1
+
+👉 Now newest element goes to bottom,
+   oldest stays on top (queue order)
+
+--------------------------------------------
+
+🧠 Example:
+
+push(1): [1]
+
+push(2):
+    st1 → st2: []
+    st1 = [2]
+    restore → [2,1] (top = 1)
+
+push(3):
+    → [3,2,1] (top = 1)
+
+👉 st1 top = front of queue
+
+--------------------------------------------
+
+pop():
+- Just pop from st1
+👉 O(1)
+
+--------------------------------------------
+
+peek():
+- Return st1.top()
+👉 O(1)
+
+--------------------------------------------
+
+empty():
+- st1.empty()
+
+--------------------------------------------
+
+⚡ Complexity:
+
+push → O(N)
+pop  → O(1)
+peek → O(1)
+
+--------------------------------------------
+
+🎯 One line:
+
+"Rearrange on push so front stays at top"
+*/
+class MyQueue {
+public:
+    stack<int> st1; 
+    stack<int> st2; 
+    MyQueue() {
+
+    }
+    
+    void push(int x) 
+    {
+        while(! st1.empty())
+        {
+            int top = st1.top(); 
+            st2.push(top); 
+            st1.pop(); 
+        }
+        st1.push(x); 
+        while(! st2.empty())
+        {
+            int top = st2.top(); 
+            st1.push(top); 
+            st2.pop(); 
+        }
+
+    }
+    
+    int pop() 
+    {
+        if(st1.empty())
+            return -1 ;
+        int popped_element = st1.top() ; 
+        st1.pop() ; 
+        return popped_element;
+    }
+    
+    int peek() 
+    {
+        if(st1.empty())
+            return -1 ;
+        int top_element = st1.top() ; 
+
+        return top_element;
+    }
+    
+    bool empty() {
+        if(st1.empty() )
+            return true;
+        return false;
+    }
+};
