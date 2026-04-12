@@ -257,3 +257,148 @@ public:
         return false;
     }
 };
+
+/*
+🔴 Queue using 2 Stacks (Optimal / Amortized O(1))
+
+🧠 Idea:
+- st1 → for incoming elements (push)
+- st2 → for outgoing elements (pop/peek)
+
+👉 Lazy transfer:
+   Move elements ONLY when needed
+
+--------------------------------------------
+
+push(x):
+
+- Always push into st1
+👉 O(1)
+
+--------------------------------------------
+
+pop():
+
+1. If st2 NOT empty:
+       pop from st2
+
+2. Else:
+       Move ALL from st1 → st2
+       (this reverses order)
+
+3. Pop from st2
+
+👉 Front element is always on top of st2
+
+--------------------------------------------
+
+peek():
+
+Same as pop, but DO NOT remove
+
+👉 Just return st2.top()
+
+--------------------------------------------
+
+🧠 Example:
+
+push(1), push(2), push(3)
+
+st1 = [1,2,3] (top = 3)
+st2 = []
+
+pop():
+
+→ move to st2:
+    st2 = [3,2,1] (top = 1)
+
+→ pop → 1 ✅
+
+--------------------------------------------
+
+⚡ Key Insight:
+
+Each element moves:
+    st1 → st2 only ONCE
+
+👉 So overall cost is spread out
+
+--------------------------------------------
+
+⚡ Complexity:
+
+push → O(1)
+pop  → Amortized O(1)
+peek → Amortized O(1)
+
+--------------------------------------------
+
+🎯 One line:
+
+"Push to st1, pop from st2, transfer only when needed"
+*/
+class MyQueue {
+public:
+    stack<int> st1; 
+    stack<int> st2; 
+    MyQueue() {
+
+    }
+    
+    void push(int x) 
+    {
+        st1.push(x);
+    }
+    
+    int pop() 
+    {
+        int popped_element;
+        if(!st2.empty())
+        {
+            popped_element = st2.top();
+
+
+        }
+        else
+        {
+            while(!st1.empty())
+            {
+                int top_st1 = st1.top() ;
+                st2.push(top_st1);
+                st1.pop(); 
+            }
+
+        }
+        popped_element = st2.top();
+        st2.pop();
+        return popped_element ;    
+    }
+    
+    int peek() 
+    {
+        int top_element; 
+        if(!st2.empty())
+        {
+            top_element = st2.top();
+        }
+        else
+        {
+            while(!st1.empty())
+            {
+                int top_st1 = st1.top() ;
+                st2.push(top_st1);
+                st1.pop(); 
+            }
+
+        }
+        top_element = st2.top();
+
+        return top_element ;    
+    }
+    
+    bool empty() {
+        if(st1.empty() && st2.empty())
+            return true;
+        return false;
+    }
+};
