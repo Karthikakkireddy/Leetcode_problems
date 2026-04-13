@@ -249,7 +249,7 @@ public:
                     return false; 
                 }
                 
-                if
+                if 
                 (
                     ch == ')' && stk.top()!= '(' ||
                     ch == '}' && stk.top() != '{'||
