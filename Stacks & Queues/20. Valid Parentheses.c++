@@ -256,7 +256,7 @@ public:
                     ch == ']' && stk.top() != '['
                 )
                 {
-                    return false;
+                    return false; 
                 }
                 else
                 {
