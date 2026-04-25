@@ -44,7 +44,7 @@ Each element pushed & popped once → O(N)
 📦 Space Complexity:
 
 stack → O(4N) - 2N for inserting and 2N for popping
-ans   → O(2N)
+ans   → O(2N) 
 
 ------------------------------------------------------
 
