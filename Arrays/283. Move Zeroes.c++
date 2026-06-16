@@ -141,3 +141,71 @@ public:
         }
     }
 };
+
+
+/*
+🔴 Move Zeroes (Two Pointers)
+
+🧠 Idea:
+- Find the first zero in the array.
+- zeroPointer always points to the position where the next
+  non-zero element should be placed.
+- Traverse the remaining array using i.
+- Whenever a non-zero element is found, swap it with
+  nums[zeroPointer] and move zeroPointer forward.
+
+🧠 Example:
+nums = [0,1,0,3,12]
+
+zeroPointer = 0
+
+i = 1:
+    swap(0,1)
+    [1,0,0,3,12]
+    zeroPointer = 1
+
+i = 3:
+    swap(0,3)
+    [1,3,0,0,12]
+    zeroPointer = 2
+
+i = 4:
+    swap(0,12)
+    [1,3,12,0,0]
+    zeroPointer = 3
+
+Answer:
+[1,3,12,0,0]
+
+⚠️ Why does zeroPointer++ work?
+- After swapping, the position at zeroPointer is filled with
+  a non-zero element.
+- Therefore the next position becomes the next candidate
+  for placing a future non-zero element.
+
+⏱️ TC: O(N)
+📦 SC: O(1)
+
+🎯 One line:
+"Keep a pointer to the first zero and move every future non-zero into that position."
+*/
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+
+        int zeroPointer = 0 ;
+        while( zeroPointer < nums.size() && nums[zeroPointer] != 0 )
+        {
+            zeroPointer++;
+        }
+
+        for(int i= zeroPointer+1 ; i< nums.size() ; i++)
+        {
+            if(nums[i] != 0)
+            {
+                swap(nums[zeroPointer], nums[i]);
+                zeroPointer++;
+            }
+        }
+    }
+};
